@@ -24,9 +24,9 @@
             </div>
             <br><br>
             <div>
-            <button type="submit" class="btn btn-outline-primary" name="login">Sign in</button>
+                <button type="submit" class="btn btn-outline-primary" name="login">Sign in</button>
             </div>
-            
+
 
         </div>
 
@@ -43,40 +43,32 @@ error_reporting(0);
 ini_set('display_errors', 0);
 require_once 'db_connect.php';
 session_start();
-if(ISSET($_POST['login'])){
+if (isset($_POST['login'])) {
     $db = new dbObj();
-$conn =  $db->getConnstring();
+    $conn =  $db->getConnstring();
 
     $email = $_POST['email'];
     $password = $_POST['password'];
     $sql = "SELECT * FROM `employee` WHERE `email` = '$email'";
     $result = mysqli_query($conn, $sql);
     $check = mysqli_fetch_array($result);
-    
-    $hased_pass=$check['password'];
-    if (password_verify($password,$hased_pass )){
-        $_SESSION['eid']=$check['id'];
+
+    $hased_pass = $check['password'];
+    if (password_verify($password, $hased_pass)) {
+        $_SESSION['eid'] = $check['id'];
         if (isset($check)) {
-            if($check['role']=='1'){
+            if ($check['role'] == '1') {
                 header("location:dashboard.php");
-                $_SESSION['admin']=true;
-    
-            }
-            else if ($check['role']=='2')
-            {
-                $_SESSION['teacher']=true;
+                $_SESSION['admin'] = true;
+            } else if ($check['role'] == '2') {
+                $_SESSION['teacher'] = true;
                 header("location:attendance.php");
             }
-            
-        } 
-
-    }else {
+        }
+    } else {
         echo "<script>alert('Wrong Credentials')</script>";
-        echo "<script>window.location='employeelogin.php'</script>";
+        echo "<script>window.location='index.php'</script>";
     }
-   
-    
-    
 }
 
 
@@ -86,5 +78,3 @@ $conn =  $db->getConnstring();
 
 
 ?>
-
-

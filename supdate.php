@@ -1,22 +1,18 @@
 <?php
 include 'nav.php';
-if(isset($_SESSION['stuff'])){
-    
-
-}elseif(isset($_SESSION['admin'])){
-
-}
-else{
+if (isset($_SESSION['stuff'])) {
+} elseif (isset($_SESSION['admin'])) {
+} else {
     echo "<script>alert('Unautorized Access')</script>";
-    echo "<script>window.location='employeelogin.php'</script>";
+    echo "<script>window.location='index.php'</script>";
 }
 ?>
 
 <div class="container">
-    <form  method="post">
+    <form method="post">
         <h1>Update Section</h1>
         <div class="container mt-3">
-           
+
             <table class="table table-borderless">
                 <tr>
 
@@ -34,7 +30,8 @@ else{
         </div>
 
 
-    </form></div>
+    </form>
+</div>
 
 
 

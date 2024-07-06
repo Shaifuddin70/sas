@@ -1,5 +1,4 @@
 <?php
-	session_start();
-	session_destroy();
-	header('location: employeelogin.php')
-?>
+session_start();
+session_destroy();
+header('location: index.php');

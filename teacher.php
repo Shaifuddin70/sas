@@ -2,51 +2,51 @@
 if (isset($_SESSION['admin'])) {
 } else {
     echo "<script>alert('Unautorized Access')</script>";
-    echo "<script>window.location='employeelogin.php'</script>";
+    echo "<script>window.location='index.php'</script>";
 }
 ?>
 <div class="container">
-<div class="title">
-    <span class="text">Teacher List</span>
-    <a href="add_employee.php" class="text" style="position: relative;
-    left: 650px;" ><button class="btn btn-primary"> Add Employee</button></a>
-</div>
-<?php
-        if (isset($_SESSION['status'])) {
-            echo "<p class='text-danger'>" . $_SESSION['status'] . "<p>";
-            unset($_SESSION['status']);
-        }
-        ?>
-
-<table class="table">
-    <thread>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Department</th>
-            <th>Class</th>
-            <th>Section</th>
-            <th>Action</th>
-
-        </tr>
-    </thread>
+    <div class="title">
+        <span class="text">Teacher List</span>
+        <a href="add_employee.php" class="text" style="position: relative;
+    left: 650px;"><button class="btn btn-primary"> Add Employee</button></a>
+    </div>
     <?php
+    if (isset($_SESSION['status'])) {
+        echo "<p class='text-danger'>" . $_SESSION['status'] . "<p>";
+        unset($_SESSION['status']);
+    }
+    ?>
 
-    $query = "select * from employee WHERE role='2'";
-    $data = mysqli_query($conn, $query);
-    $total = mysqli_num_rows($data);
-    
-    if ($total != 0) {
-        while ($result = mysqli_fetch_assoc($data)) {
-            $did = $result['department_id'];
-            $department = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `department` WHERE id='$did'"));
-            $cid = $result['cid'];
-            $class = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `class` WHERE cid='$cid'"));
-            $sid = $result['sid'];
-            $section = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `section` WHERE sid='$sid'"));
-           
-            echo '
+    <table class="table">
+        <thread>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Department</th>
+                <th>Class</th>
+                <th>Section</th>
+                <th>Action</th>
+
+            </tr>
+        </thread>
+        <?php
+
+        $query = "select * from employee WHERE role='2'";
+        $data = mysqli_query($conn, $query);
+        $total = mysqli_num_rows($data);
+
+        if ($total != 0) {
+            while ($result = mysqli_fetch_assoc($data)) {
+                $did = $result['department_id'];
+                $department = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `department` WHERE id='$did'"));
+                $cid = $result['cid'];
+                $class = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `class` WHERE cid='$cid'"));
+                $sid = $result['sid'];
+                $section = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `section` WHERE sid='$sid'"));
+
+                echo '
         <tr>
         <td>' . $result['name'] . '</td>
         <td>' . $result['email'] . '</td>
@@ -61,13 +61,13 @@ if (isset($_SESSION['admin'])) {
         </td>
         
         </tr>';
-        }
-    } else {
-        echo "NO records Found";
-    };
+            }
+        } else {
+            echo "NO records Found";
+        };
 
 
-    include 'footer.php';
-    ?>
-</table>
+        include 'footer.php';
+        ?>
+    </table>
 </div>

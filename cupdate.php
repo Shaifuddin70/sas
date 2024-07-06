@@ -4,7 +4,7 @@ if (isset($_SESSION['stuff'])) {
 } elseif (isset($_SESSION['admin'])) {
 } else {
     echo "<script>alert('Unautorized Access')</script>";
-    echo "<script>window.location='employeelogin.php'</script>";
+    echo "<script>window.location='index.php'</script>";
 }
 ?>
 

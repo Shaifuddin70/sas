@@ -2,7 +2,7 @@
 if (isset($_SESSION['admin'])) {
 } else {
     echo "<script>alert('Unautorized Access')</script>";
-    echo "<script>window.location='employeelogin.php'</script>";
+    echo "<script>window.location='index.php'</script>";
 }
 $totalem = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `employee`"));
 $totalem = $totalem - 1;
@@ -17,15 +17,15 @@ $totalr = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `item_request`"));
 $attquery = mysqli_query($conn, "SELECT *FROM `attendance`");
 $atttotal = mysqli_num_rows($attquery);
 $present = 0;
-$absent=0;
+$absent = 0;
 if ($atttotal != 0) {
     while ($attresult =  mysqli_fetch_assoc($attquery)) {
         if ($attresult['attendance_value'] == 1) {
             $present++;
         }
+    }
 }
-}
-$attendance=number_format(($present/$atttotal)*100, 2);
+$attendance = number_format(($present / $atttotal) * 100, 2);
 
 
 
@@ -54,7 +54,7 @@ $attendance=number_format(($present/$atttotal)*100, 2);
                 <span class="number"><?php echo "$attendance" ?> %</span>
             </div>
         </div>
-<br>
+        <br>
         <table class="table">
             <thread>
                 <tr>

@@ -3,7 +3,7 @@ include 'nav.php';
 if (isset($_SESSION['admin'])) {
 } else {
     echo "<script>alert('Unautorized Access')</script>";
-    echo "<script>window.location='employeelogin.php'</script>";
+    echo "<script>window.location='index.php'</script>";
 }
 ?>
 
@@ -33,20 +33,16 @@ if (isset($_SESSION['admin'])) {
 
 <?php
 include 'footer.php';
- if(isset($_POST['submit']))
- {
+if (isset($_POST['submit'])) {
     $sname = $_POST['sname'];
 
-    $query="INSERT INTO section(sname)VALUES('$sname')";
-   $query_run=mysqli_query($conn,$query);
-   if($query_run)
-   {
-    $_SESSION['status']="Inserted Succesfully";
-       echo "<script>window.location='section.php'</script>";
-   }
-   else{
-    $_SESSION['status']="Not Inserted";
-       echo "<script>window.location='section.php'</script>";
-   }
- }
-
+    $query = "INSERT INTO section(sname)VALUES('$sname')";
+    $query_run = mysqli_query($conn, $query);
+    if ($query_run) {
+        $_SESSION['status'] = "Inserted Succesfully";
+        echo "<script>window.location='section.php'</script>";
+    } else {
+        $_SESSION['status'] = "Not Inserted";
+        echo "<script>window.location='section.php'</script>";
+    }
+}

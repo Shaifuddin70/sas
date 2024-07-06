@@ -5,7 +5,7 @@ if (isset($_SESSION['admin'])) {
     // Your code for admin access here
 } else {
     echo "<script>alert('Unauthorized Access')</script>";
-    echo "<script>window.location='employeelogin.php'</script>";
+    echo "<script>window.location='index.php'</script>";
     exit; // Add this to stop executing the code further
 }
 ?>
@@ -13,7 +13,7 @@ if (isset($_SESSION['admin'])) {
 <div class="container mt-3">
     <form method="post">
         <h1>Add New Teacher</h1>
-        
+
         <table class="table table-borderless">
             <tr>
                 <th>Name</th>
@@ -105,7 +105,7 @@ if (isset($_SESSION['admin'])) {
                     </select>
                 </td>
             </tr>
-       
+
         </table>
         <div class="button">
             <button class="btn btn-primary" type="submit" name="submit">SUBMIT</button>
@@ -126,7 +126,7 @@ if (isset($_POST['submit'])) {
     $pass = $_POST['password'];
     $role = $_POST['role'];
     $pass = password_hash($pass, PASSWORD_DEFAULT);
-    
+
     $query = "INSERT INTO employee (`name`, `email`, `number`, `department_id`, `cid`, `sid`, `password`, `role`)
               VALUES ('$name', '$email', '$number', '$department', '$class', '$section', '$pass', '$role')";
     $data = mysqli_query($conn, $query);
